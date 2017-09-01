@@ -1,22 +1,20 @@
+{% load staticfiles %}
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <title>Blog Title</title>
     </head>
     <body>
-        <div>
-            <h1><a href="">Blog Title</a></h1>
-        </div>
+      <div>
+        <h1><a href="">Blog Title</a></h1>
+      </div>
+      {% for post in posts %}
+        <div style="border: 1px solid black; background-color: lightgray; margin-bottom: 2%; padding: 10px;">
+          <h3><a href="">{{ post.title }}</a><span style="font-size: 12pt;"> published: {{ post.published_date }}</span></h3>
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
+      {% endfor %}
     </body>
 </html>
