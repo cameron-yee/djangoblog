@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "blog/partials/header.html" %}
+</head>
+<body id="override-boot-css" class="room">
+  {% include "blog/partials/pageheader.html" %}
+  {% block content %}{% endblock content %}
+  {% include "blog/partials/scripts.html" %}
+</body>
+</html>

@@ -1,20 +1,14 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <title>Blog Title</title>
-    </head>
-    <body>
-      <div>
-        <h1><a href="">Blog Title</a></h1>
-      </div>
-      {% for post in posts %}
-        <div style="border: 1px solid black; background-color: lightgray; margin-bottom: 2%; padding: 10px;">
-          <h3><a href="">{{ post.title }}</a><span style="font-size: 12pt;"> published: {{ post.published_date }}</span></h3>
+{% extends "blog/layout.html" %}
+{% block content %}
+{% for post in posts %}
+<div class="row">
+  <div class="col-12">
+    <div class="blog-container">
+      <h3><a href="">{{ post.title }}</a><span style="font-size: 12pt;"> published: {{ post.published_date }}</span></h3>
 
-          <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-      {% endfor %}
-    </body>
-</html>
+      <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}
