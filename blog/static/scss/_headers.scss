@@ -1,0 +1,33 @@
+.header-title {
+  background-color: $orange;
+  display: inline-block;
+  padding: 20px;
+  text-align: center;
+
+  a {
+    color: $white;
+    font-family: 'Lobster';
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+
+
+.left-header {
+  background-color: $orange;
+  margin: 0;
+}
+
+.right-header {
+  background-color: $black;
+  margin: 0;
+
+  a {
+    color: $orange;
+    font-family: Arial;
+    font-size: 12pt;
+  }
+}
