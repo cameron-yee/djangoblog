@@ -2,9 +2,16 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var min = require('gulp-clean-css');
 var rename = require('gulp-rename');
+var livereload = require('gulp-livereload');
+var connect = require('gulp-connect');
 
 var sassFiles = 'blog/static/scss/**/*.scss';
 var cssDest = 'blog/static/css';
+
+function errorHandler(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
 
 gulp.task('sass', function() {
   var stream = gulp.src(sassFiles)
@@ -26,11 +33,18 @@ gulp.task('min', ['sass'], function() {
   return stream;
 });
 
-function errorHandler(err) {
-  console.log(err.toString());
-  this.emit('end');
-}
+gulp.task('server', function() {
+  connect.server({
+    port: 8000,
+    host: '127.0.0.1',
+    fallback: 'blog/templates/layout.html',
+  })
+})
 
-gulp.task('watch', function() {
+gulp.task('watch', ['server'], function() {
+  livereload.listen({ basePath: '127.0.0.1:8000'})
   gulp.watch('blog/static/scss/**/*.scss', ['sass', 'min']);
+  gulp.watch(sassFiles, ['sass','min']);
+  gulp.watch('**/static/css/min/*.css').on('change', livereload.changed);
+  gulp.watch('**/templates/**/*.html').on('change', livereload.changed);
 });
